@@ -99,7 +99,7 @@ function renderCartSummary(){
     
         `;
     });
-    
+    document.querySelector('.checkout').innerHTML = `Checkout(${getCartItems()})`;
     document.querySelector('.js-return-to-home-link').innerHTML = `${getCartItems()} items`;
     document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
     
@@ -114,6 +114,7 @@ document.querySelectorAll('.js-delete-quantity-link').forEach(deleteBt=>{
     deleteBt.addEventListener('click',()=>{
         let linkId = deleteBt.dataset.itemId;
         removeFromCart(linkId);
+        document.querySelector('.checkout').innerHTML = `Checkout(${getCartItems()})`;
         document.querySelector(`.js-cart-item-container-${linkId}`).remove();
         document.querySelector('.js-return-to-home-link').innerHTML = `${getCartItems()} items`;
     });
