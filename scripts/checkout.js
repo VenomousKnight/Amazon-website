@@ -19,11 +19,11 @@ function renderCartSummary(){
     let cartSummaryHTML = ``;
 
     cart.forEach(cartItem => {
-        let intemId = cartItem.productId;
-        let product = getProduct(intemId);
+        let itemId = cartItem.productId;
+        let product = getProduct(itemId);
         
         cartSummaryHTML += `
-        <div class="cart-item-container">
+        <div class="cart-item-container js-cart-item-container-${itemId}">
                 <div class="delivery-date">
                   Delivery date: Wednesday, June 15
                 </div>
@@ -115,6 +115,7 @@ document.querySelectorAll('.js-delete-quantity-link').forEach(deleteBt=>{
         console.log('delete', linkId);
         removeFromCart(linkId);
         console.log(cart);
-        renderCartSummary();
+        
+        document.querySelector(`.js-cart-item-container-${linkId}`).remove();
     });
 });
