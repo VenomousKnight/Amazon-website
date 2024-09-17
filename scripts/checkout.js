@@ -1,7 +1,7 @@
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, getCartItems, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { currencyFormat } from "../utils/functions.js";
-let cartSummaryHTML = ``;
+
 
 function getProduct(productId){
     let matchingProduct;
@@ -18,7 +18,7 @@ renderCartSummary();
 function renderCartSummary(){
     let cartSummaryHTML = ``;
 
-    cart.forEach(cartItem => {
+    cart.forEach(cartItem => {        
         let itemId = cartItem.productId;
         let product = getProduct(itemId);
         
@@ -99,7 +99,8 @@ function renderCartSummary(){
     
         `;
     });
-    console.log(cart);
+    
+    document.querySelector('.js-return-to-home-link').innerHTML = `${getCartItems()} items`;
     document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
     
 }
@@ -112,10 +113,8 @@ document.querySelectorAll('.js-delete-quantity-link').forEach(deleteBt=>{
 
     deleteBt.addEventListener('click',()=>{
         let linkId = deleteBt.dataset.itemId;
-        console.log('delete', linkId);
         removeFromCart(linkId);
-        console.log(cart);
-        
         document.querySelector(`.js-cart-item-container-${linkId}`).remove();
+        document.querySelector('.js-return-to-home-link').innerHTML = `${getCartItems()} items`;
     });
 });

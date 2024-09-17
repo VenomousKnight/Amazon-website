@@ -41,3 +41,12 @@ export function removeFromCart(cartItemId){
     });
 
 }
+
+export function getCartItems(){
+    let totalItems = 0;
+    cart.forEach(item=>{
+        totalItems += item.quantity;
+    });
+
+    return totalItems;
+}
