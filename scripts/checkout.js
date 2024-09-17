@@ -1,4 +1,4 @@
-import { cart, getCartItems, removeFromCart } from "../data/cart.js";
+import { cart, getCartItems, removeFromCart , updateDeliveryOption} from "../data/cart.js";
 import { products } from "../data/products.js";
 import currencyFormat from "../utils/functions.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
@@ -34,7 +34,7 @@ function renderCartSummary(){
         let product = getProduct(itemId);
         let deliveryId = cartItem.deliveryOptionId;
         let deliveryOption = getDeliveryOption(deliveryId);
-
+    
         cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${itemId}">
                 <div class="delivery-date">
@@ -95,7 +95,7 @@ function deliveryOptionsHTML(cartItem){
     let isChecked = cartItem.deliveryOptionId === option.id;
 
     deliveryHTML += `
-        <div class="delivery-option">
+        <div class="delivery-option js-delivery-option" data-product-id="${cartItem.productId}" data-delivery-option-id="${option.id}">
           <input type="radio" ${isChecked ? 'checked  ' : ''} class="delivery-option-input"
             name="delivery-option-${cartItem.productId}">
           <div>
@@ -117,7 +117,6 @@ function deliveryOptionsHTML(cartItem){
 
 
 document.querySelectorAll('.js-delete-quantity-link').forEach(deleteBt=>{
-
     deleteBt.addEventListener('click',()=>{
         let linkId = deleteBt.dataset.itemId;
         removeFromCart(linkId);
@@ -128,5 +127,9 @@ document.querySelectorAll('.js-delete-quantity-link').forEach(deleteBt=>{
 });
 
 
-
-console.log(dayjs().add(5,'days').format('dddd, MMMM D'));
+document.querySelectorAll('.js-delivery-option').forEach(element=>{
+  element.addEventListener('click', ()=>{
+    const {productId, deliveryOptionId} = element.dataset;
+    updateDeliveryOption(productId, deliveryOptionId);
+  });
+});
