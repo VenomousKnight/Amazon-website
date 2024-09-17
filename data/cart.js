@@ -9,12 +9,12 @@ export const cart = [
     }
 ];
 
-export function addToCart(cartitemId){
+export function addToCart(cartItemId){
 
     let matchingProduct;
 
     cart.forEach(cartItem=>{
-        if(cartItem.productId === cartitemId){
+        if(cartItem.productId === cartItemId){
             matchingProduct = cartItem;
         }
     });
@@ -22,8 +22,17 @@ export function addToCart(cartitemId){
         matchingProduct.quantity++;
     }else{
         cart.push({
-            productId: `${cartitemId}`,
+            productId: `${cartItemId}`,
             quantity:1
         });
     }
+}
+export function removeFromCart(cartItemId){
+    cart.forEach((item, index)=>{
+        if(item.productId === cartItemId){
+            cart.splice(index, 1);
+        }
+
+    });
+
 }
