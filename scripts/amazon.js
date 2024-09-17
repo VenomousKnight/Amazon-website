@@ -1,7 +1,7 @@
 
 import { cart, addToCart, getCartItems} from "../data/cart.js";
 import { products } from "../data/products.js";
-import { currencyFormat } from "../utils/functions.js";
+import currencyFormat from "../utils/functions.js";
 
 let productsHTML = ``;
 
