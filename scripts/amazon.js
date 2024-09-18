@@ -56,12 +56,14 @@ products.forEach((product)=>{
           </button>
         </div>`;
 
+        updateCartQuantity();
+
        
 });
 
 function updateCartQuantity(){
 
-    document.querySelector('.js-cart-quantity').innerHTML = getCartItems();
+    document.querySelector('.js-cart-quantity').innerHTML = getCartItems() === 0 ? `` : getCartItems();
 }
 
 
@@ -77,6 +79,5 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button)=>{
 
         updateCartQuantity();
 
-        //localStorage('cart', JSON.stringify(cart));
     });
 });
