@@ -20,11 +20,7 @@ export function renderPaymentSummary(){
     tax = Math.round((itemsCost+shippingCost)*0.1);
     total = (tax+shippingCost+itemsCost);
     totalBeforeTax = (itemsCost+shippingCost);
-    console.log(`tax ${tax}`);
-    console.log(total);
-    console.log(itemsCost);
-    console.log(shippingCost);
-
+    
 
     let paymentHTML =`
         <div class="payment-summary-title">
