@@ -15,3 +15,27 @@ export const deliveryOptions = [
         priceCents:999
     }
 ];
+
+export function getDeliveryDay(cartItem){
+
+    let day = 0;
+  
+    deliveryOptions.forEach(option=>{
+      if(cartItem.deliveryId === option.id)
+        day = option.deliveryDays;
+    });
+  
+    return day;
+  }
+
+  
+export function getShippingCost(cartItemDeliveryId){
+
+    let cost = 0;
+    deliveryOptions.forEach(option=>{
+        if(option.id === cartItemDeliveryId)
+            cost = option.priceCents;
+    });
+
+    return cost;
+}

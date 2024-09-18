@@ -3,31 +3,11 @@ import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { products } from "../../data/products.js";
 import { currencyFormat } from "../../utils/functions.js";
 import datejs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
+import { getProduct } from "../../data/products.js";
+import { getDeliveryDay } from "../../data/deliveryOptions.js";
 
 
-function getProduct(productId){
-    let matchingProduct;
-    products.forEach(product=>{
-        if(product.id === productId){
-            matchingProduct = product;
-        }     
-    });
-    return matchingProduct;
-}
-
-
-
-function getDeliveryDay(cartItem){
-
-  let day = 0;
-
-  deliveryOptions.forEach(option=>{
-    if(cartItem.deliveryId === option.id)
-      day = option.deliveryDays;
-  });
-
-  return day;
-}
 
 renderCartSummary();
 
@@ -101,6 +81,7 @@ document.querySelectorAll('.js-delete-quantity-link').forEach(deleteBt=>{
         document.querySelector('.checkout').innerHTML = `Checkout(${getCartItems()})`;
         document.querySelector(`.js-cart-item-container-${linkId}`).remove();
         document.querySelector('.js-return-to-home-link').innerHTML = `${getCartItems()} items`;
+        renderPaymentSummary();
     });
 });
 
@@ -143,6 +124,7 @@ document.querySelectorAll('.js-delivery-option').forEach(element=>{
     updateDeliveryDate(productId, deliveryOptionId);
     
     renderCartSummary();
+    renderPaymentSummary();
   })
 });
 
