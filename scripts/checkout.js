@@ -34,7 +34,7 @@ function renderCartSummary(){
     
                   <div class="cart-item-details">
                     <div class="product-name">
-                      Intermediate Size Basketball
+                      ${product.name}
                     </div>
                     <div class="product-price">
                       $${currencyFormat(product.priceCents)}
