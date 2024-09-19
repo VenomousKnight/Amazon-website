@@ -1,11 +1,11 @@
 import { cart, getCartItems, removeFromCart ,updateDeliveryDate} from "../../data/cart.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
-import { products } from "../../data/products.js";
 import { currencyFormat } from "../../utils/functions.js";
 import datejs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryDay } from "../../data/deliveryOptions.js";
+import "../../data/products.js"
 
 
 
@@ -35,7 +35,7 @@ export function renderCartSummary(){
                       ${product.name}
                     </div>
                     <div class="product-price">
-                      $${currencyFormat(product.priceCents)}
+                      $${product.getPrice()}
                     </div>
                     <div class="product-quantity">
                       <span>
