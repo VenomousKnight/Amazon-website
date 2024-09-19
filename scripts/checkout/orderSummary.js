@@ -21,7 +21,7 @@ export function renderCartSummary(){
         let dateString  = today.add(getDeliveryDay(cartItem), 'days').format('dddd, MMMM D');
         
         cartSummaryHTML += `
-        <div class="cart-item-container js-cart-item-container-${itemId}">
+        <div class="cart-item-container js-cart-item-container js-cart-item-container-${itemId}">
                 <div class="delivery-date">
                   Delivery date: ${dateString}
                 </div>
@@ -39,12 +39,12 @@ export function renderCartSummary(){
                     </div>
                     <div class="product-quantity">
                       <span>
-                        Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                        Quantity: <span class="quantity-label js-quantity-label">${cartItem.quantity}</span>
                       </span>
                       <span class="update-quantity-link link-primary">
                         Update
                       </span>
-                      <span data-item-id="${cartItem.productId}" class="delete-quantity-link link-primary js-delete-quantity-link">
+                      <span data-item-id="${cartItem.productId}" class="delete-quantity-link link-primary js-delete-quantity-link js-delete-quantity-link-${cartItem.productId}">
                         Delete
                       </span>
                     </div>
