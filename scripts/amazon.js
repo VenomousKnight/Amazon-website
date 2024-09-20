@@ -1,9 +1,11 @@
 import { addToCart, getCartItems} from "../data/cart.js";
-import { products , loadProducts} from "../data/products.js";
+import { products , loadProductsFetch} from "../data/products.js";
 import "../data/products.js";
 
-loadProducts(renderProductGrid);
 
+loadProductsFetch().then(() => {
+  renderProductGrid();
+});
 
 function renderProductGrid(){
 let productsHTML = ``;

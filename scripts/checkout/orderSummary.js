@@ -3,7 +3,7 @@ import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { currencyFormat } from "../../utils/functions.js";
 import datejs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
-import { getProduct, loadProducts } from "../../data/products.js";
+import { getProduct } from "../../data/products.js";
 import { getDeliveryDay } from "../../data/deliveryOptions.js";
 import "../../data/products.js"
 

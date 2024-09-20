@@ -2,11 +2,28 @@ import { renderCartSummary} from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 //import '../data/cart-class.js';
 //import "../data/bakcend-practice.js";
-import { loadProducts } from "../data/products.js";
+import { loadProductsFetch } from "../data/products.js";
 import { loadCart } from "../data/cart-class.js";
 import { getCartItems } from "../data/cart.js";
 
 
+Promise.all ([
+    loadProductsFetch(),
+    new Promise(resolve => {
+        loadCart(() =>{
+            resolve(getCartItems());
+    }   );
+    })
+]).then((values) => {
+    console.log(values);
+    renderCartSummary();
+    renderPaymentSummary();
+});
+
+// loadProductsFetch().then(() => {
+//     renderCartSummary();
+//     renderPaymentSummary();
+// });
 // loadProducts(() => {
 //     renderCartSummary();
 //     renderPaymentSummary(); 
@@ -70,19 +87,19 @@ import { getCartItems } from "../data/cart.js";
 // });
 
 
-Promise.all ([
-    new Promise(resolve => {
-        loadProducts(() =>{
-            resolve(getCartItems());
-    }   );
-    }),
-    new Promise(resolve => {
-        loadCart(() =>{
-            resolve(getCartItems());
-    }   );
-    })
-]).then((values) => {
-    console.log(values);
-    renderCartSummary();
-    renderPaymentSummary();
-});
+// Promise.all ([
+//     new Promise(resolve => {
+//         loadProducts(() =>{
+//             resolve(getCartItems());
+//     }   );
+//     }),
+//     new Promise(resolve => {
+//         loadCart(() =>{
+//             resolve(getCartItems());
+//     }   );
+//     })
+// ]).then((values) => {
+//     console.log(values);
+//     renderCartSummary();
+//     renderPaymentSummary();
+// });

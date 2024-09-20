@@ -720,30 +720,60 @@ export function getProduct(productId){
 export let products= [];
 
 
-export function loadProducts(fun){
-  let xhr = new XMLHttpRequest();
 
-  xhr.addEventListener('load',() =>{
-     products = JSON.parse(xhr.response).map((productDetails) =>{
-        if(productDetails.type === 'clothing'){
-           return new Clothing(productDetails);
-        }
-        return new Products(productDetails);
-      });;
-      if (typeof fun === 'function') {
-        fun();  // Call the passed callback function
-      } else {
-        console.warn("Callback 'fun' is not a function.");
-      }
+export function loadProductsFetch(){
+  let promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+    
+    return response.json();
+    
+  }).then(productsData => {
+    products = productsData.map(productDetails =>{
+
+      if(productDetails.type === 'clothing')
+        return new Clothing(productDetails);
+
+      return new Products(productDetails);
+    });
+
+    console.log('loaded the products')
   });
+
+
+  return promise;
+}
+
+// loadProductsFetch().then(() =>{
+//   console.log('Do something');
+// }); 
+
+
+
+
+
+// export function loadProducts(fun){
+//   let xhr = new XMLHttpRequest();
+
+//   xhr.addEventListener('load',() =>{
+//      products = JSON.parse(xhr.response).map((productDetails) =>{
+//         if(productDetails.type === 'clothing'){
+//            return new Clothing(productDetails);
+//         }
+//         return new Products(productDetails);
+//       });;
+//       if (typeof fun === 'function') {
+//         fun();  // Call the passed callback function
+//       } else {
+//         console.warn("Callback 'fun' is not a function.");
+//       }
+//   });
 
   
 
-  xhr.open('GET','https://supersimplebackend.dev/products');
-  xhr.send();
-}
+//   xhr.open('GET','https://supersimplebackend.dev/products');
+//   xhr.send();
+// }
 
 
-loadProducts();
+// loadProducts();
 
 
