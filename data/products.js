@@ -21,7 +21,24 @@ class Products{
   getPrice(){
     return currencyFormat(this.priceCents);
   }
+  extraInfoHTML(){
+    return ``;
+  }
 }
+
+class Clothing extends Products{
+  sizeChartLink;
+
+  constructor(productDetails){
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML(){
+    return `<a href="${this.sizeChartLink}" target="_blank">Size chart</a>`;
+  }
+}
+
 
 export const products = [
   {
@@ -683,8 +700,13 @@ export const products = [
     ]
   }
 ].map((productDetails) =>{
-   return new Products(productDetails);
+  if(productDetails.type === 'clothing'){
+    return new Clothing(productDetails);
+  }
+  return new Products(productDetails);
 });
+
+
 
 
 export function getProduct(productId){
