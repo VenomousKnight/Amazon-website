@@ -11,15 +11,23 @@ loadPage();
 
 async function loadPage() {
     console.log('hello');
+    let value;
 
-    await loadProductsFetch();
+    try {
+       // throw 'error1';
+        await loadProductsFetch();
 
-    const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value');
+        value = await new Promise((resolve, reject) => {
+             // throw 'error';
+                loadCart(() => {
+                    //reject('errorq');
+                    resolve('value');
+                });
         });
-    });
+    } catch (error){
 
+        console.log('Oops something went wrong try again later');
+    }
     console.log(value);
 
     console.log('Page ready');
