@@ -3,13 +3,13 @@ import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { currencyFormat } from "../../utils/functions.js";
 import datejs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
-import { getProduct } from "../../data/products.js";
+import { getProduct, loadProducts } from "../../data/products.js";
 import { getDeliveryDay } from "../../data/deliveryOptions.js";
 import "../../data/products.js"
 
 
 
-renderCartSummary();
+//renderCartSummary();
 
 export function renderCartSummary(){
     let cartSummaryHTML = ``;
@@ -19,7 +19,6 @@ export function renderCartSummary(){
         let product = getProduct(itemId);
         let today = datejs();
         let dateString  = today.add(getDeliveryDay(cartItem), 'days').format('dddd, MMMM D');
-        
         cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container js-cart-item-container-${itemId}">
                 <div class="delivery-date">

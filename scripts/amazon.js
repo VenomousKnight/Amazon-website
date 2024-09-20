@@ -1,8 +1,11 @@
-
 import { addToCart, getCartItems} from "../data/cart.js";
-import { products } from "../data/products.js";
+import { products , loadProducts} from "../data/products.js";
 import "../data/products.js";
 
+loadProducts(renderProductGrid);
+
+
+function renderProductGrid(){
 let productsHTML = ``;
 
 
@@ -83,3 +86,5 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button)=>{
 
     });
 });
+
+}
