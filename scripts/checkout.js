@@ -3,9 +3,86 @@ import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 //import '../data/cart-class.js';
 //import "../data/bakcend-practice.js";
 import { loadProducts } from "../data/products.js";
+import { loadCart } from "../data/cart-class.js";
+import { getCartItems } from "../data/cart.js";
 
 
-loadProducts(() => {
+// loadProducts(() => {
+//     renderCartSummary();
+//     renderPaymentSummary(); 
+// });
+
+
+// new Promise(resolve => {
+//     console.log('start promise');
+//     loadProducts(() => {
+//         console.log('loaded products');
+//         resolve();
+//     });
+// }).then(() => {
+//     console.log('Next step');
+// });
+
+// new Promise((resolve) => {
+//     loadProducts(() => {
+//         resolve();
+//     });
+// }).then(() =>{
+//     renderCartSummary();
+//     renderPaymentSummary();
+// });
+
+
+
+// loadProducts(() => {
+//     loadCart(() => {
+//         renderCartSummary();
+//         renderPaymentSummary();
+//     });
+// });
+
+
+// new Promise(resolve => {
+//     loadProducts(() =>{
+//         loadCart(() => {
+//             resolve();
+//         });
+// }   );
+// }).then(() => {
+//     renderCartSummary();
+//     renderPaymentSummary();
+// });
+
+// new Promise(resolve => {
+//     loadProducts(() =>{
+//         resolve('some value');
+// }   );
+// }).then((value) => {
+//     console.log(value);
+//     return new Promise((resolve) => {
+//         loadCart(() =>{
+//             resolve()
+//         });
+//     });
+// }).then(() => {
+//     renderCartSummary();
+//     renderPaymentSummary();
+// });
+
+
+Promise.all ([
+    new Promise(resolve => {
+        loadProducts(() =>{
+            resolve(getCartItems());
+    }   );
+    }),
+    new Promise(resolve => {
+        loadCart(() =>{
+            resolve(getCartItems());
+    }   );
+    })
+]).then((values) => {
+    console.log(values);
     renderCartSummary();
-    renderPaymentSummary(); 
+    renderPaymentSummary();
 });

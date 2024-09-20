@@ -87,3 +87,26 @@ console.log(cart.cartItems);
 
 businessCart.addToCart('58b4fc92-e98c-42aa-8c55-b6b79996769a');
 console.log(businessCart.cartItems);
+
+
+
+
+
+export function loadCart(fun){
+    let xhr = new XMLHttpRequest();
+  
+    xhr.addEventListener('load',() =>{
+
+        console.log(xhr.response);
+        
+        if (typeof fun === 'function') {
+          fun();  // Call the passed callback function
+        } else {
+          console.warn("Callback 'fun' is not a function.");
+        }
+    
+    });
+
+    xhr.open('GET','https://supersimplebackend.dev/cart');
+    xhr.send();
+}
