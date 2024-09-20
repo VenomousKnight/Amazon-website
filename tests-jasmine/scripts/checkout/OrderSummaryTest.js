@@ -1,12 +1,17 @@
 import {renderCartSummary}from "../../../scripts/checkout/orderSummary.js";
 import { cart, loadFromStorage} from "../../../data/cart.js";
-import { products } from "../../../data/products.js";
+import { loadProducts, products } from "../../../data/products.js";
 
 
 describe('Test suite: Render cart summary',() => {
     let cartItem1Id = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
     let cartItem2Id =  "15b6fc6f-327a-4ec4-896f-486349e85a3d";
 
+    beforeAll((done) => {
+        loadProducts(() => {
+            done();
+        });
+    });
     beforeEach(() => {
         spyOn(localStorage,'setItem');
         spyOn(localStorage,'getItem').and.callFake(() => {

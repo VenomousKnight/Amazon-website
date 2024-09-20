@@ -730,7 +730,11 @@ export function loadProducts(fun){
         }
         return new Products(productDetails);
       });;
-      fun();
+      if (typeof fun === 'function') {
+        fun();  // Call the passed callback function
+      } else {
+        console.warn("Callback 'fun' is not a function.");
+      }
   });
 
   
