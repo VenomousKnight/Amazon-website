@@ -707,8 +707,6 @@ export const products = [
 });
 
 
-
-
 export function getProduct(productId){
   let matchingProduct;
   products.forEach(product=>{
