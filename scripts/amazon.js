@@ -35,7 +35,7 @@ products.forEach((product)=>{
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-product-quantity js-product-quantity-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -77,13 +77,32 @@ function updateCartQuantity(){
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 
+document.querySelectorAll('.js-product-quantity').forEach(element => {
+  element.addEventListener('change', event=>{
+
+    let quantity = event.target.value;
+
+    console.log(quantity);
+
+    element.dataset.quantity = quantity;
+  });
+});
 
 document.querySelectorAll('.js-add-to-cart-button').forEach((button)=>{
     
     button.addEventListener('click',async ()=>{
         let cartItemId = button.dataset.productId;
         let addedToCart = document.querySelector(`.js-added-to-cart-${cartItemId}`);
+        let element= document.querySelector(`.js-product-quantity-${cartItemId}`);
 
+        let quantity = 1;
+
+        if(element.dataset.quantity){
+          quantity = element.dataset.quantity;
+        }else{
+
+          quantity = 1;
+        }
         addedToCart.style.opacity = 0;
         addedToCart.style.transition = "none";
         
@@ -93,7 +112,7 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button)=>{
         }, 100);
 
 
-        addToCart(cartItemId);
+        addToCart(cartItemId, quantity);
         updateCartQuantity();
 
     });
