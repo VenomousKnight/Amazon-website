@@ -70,3 +70,28 @@ export function updateDeliveryDate(productId, deliveryOptionId){
 
     saveToStorage();
 }
+
+
+export function upDateCart(cartItemId, number){
+    let quantity = Number(number);
+    let index = 0;
+    
+    let matchingProduct;
+
+    cart.forEach(cartItem=>{
+        if(cartItem.productId === cartItemId){
+            matchingProduct = cartItem;
+        }
+        index++;
+    });
+    if(matchingProduct){
+        removeFromCart(cartItemId);
+        cart.push({
+            productId: `${cartItemId}`,
+            quantity:quantity,
+            deliveryId:'1'
+        });
+    }
+
+    saveToStorage();
+}
