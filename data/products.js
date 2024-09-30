@@ -735,7 +735,6 @@ export function loadProductsFetch(){
       return new Products(productDetails);
     });
 
-    console.log('loaded the products')
   })
   //.catch((error) => {
 

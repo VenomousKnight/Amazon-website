@@ -97,10 +97,7 @@ export function renderCartSummary(){
 
                   cartSelector.addEventListener('change', event=>{
                 
-                    let quantity = event.target.value;
-                
-                    console.log(quantity);
-                
+                    let quantity = event.target.value;               
                     cartSelector.dataset.quantity = quantity;
                   });
                 

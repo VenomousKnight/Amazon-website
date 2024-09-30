@@ -81,9 +81,6 @@ document.querySelectorAll('.js-product-quantity').forEach(element => {
   element.addEventListener('change', event=>{
 
     let quantity = event.target.value;
-
-    console.log(quantity);
-
     element.dataset.quantity = quantity;
   });
 });

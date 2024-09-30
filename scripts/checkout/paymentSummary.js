@@ -74,7 +74,6 @@ export function renderPaymentSummary(){
 
       addOrder(order);
 
-      console.log(order);
       }catch(error){
         console.log('Oops something went wrong please try later :( ');
       }

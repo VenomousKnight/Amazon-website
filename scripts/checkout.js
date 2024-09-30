@@ -10,7 +10,6 @@ import { getCartItems } from "../data/cart.js";
 loadPage();
 
 async function loadPage() {
-    console.log('hello');
     let value;
 
     try {
@@ -28,9 +27,7 @@ async function loadPage() {
 
         console.log('Oops something went wrong try again later');
     }
-    console.log(value);
 
-    console.log('Page ready');
 
 
     renderCartSummary();

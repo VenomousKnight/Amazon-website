@@ -82,11 +82,9 @@ const cart = new Cart('normal');
 const businessCart = new Cart('business');
 
 cart.addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
-console.log(cart.cartItems);
 
 
 businessCart.addToCart('58b4fc92-e98c-42aa-8c55-b6b79996769a');
-console.log(businessCart.cartItems);
 
 
 
@@ -97,7 +95,6 @@ export function loadCart(fun){
   
     xhr.addEventListener('load',() =>{
 
-        console.log(xhr.response);
         
         if (typeof fun === 'function') {
           fun();  // Call the passed callback function
