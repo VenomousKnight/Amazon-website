@@ -72,25 +72,12 @@ export function updateDeliveryDate(productId, deliveryOptionId){
 }
 
 
-export function upDateCart(cartItemId, number){
+export function upDateCart(cartItemId, number) {
     let quantity = Number(number);
-    let index = 0;
-    
-    let matchingProduct;
-
-    cart.forEach(cartItem=>{
-        if(cartItem.productId === cartItemId){
-            matchingProduct = cartItem;
-        }
-        index++;
-    });
-    if(matchingProduct){
-        removeFromCart(cartItemId);
-        cart.push({
-            productId: `${cartItemId}`,
-            quantity:quantity,
-            deliveryId:'1'
-        });
+    let matchingProduct = cart.find(cartItem => cartItem.productId === cartItemId);
+  
+    if (matchingProduct) {
+      matchingProduct.quantity = quantity; // Directly update the quantity if the product exists
     }
 
     saveToStorage();

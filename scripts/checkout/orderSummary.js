@@ -107,7 +107,13 @@ export function renderCartSummary(){
               updateState.innerHTML = 'Update';
               let quantity = cartSelector.dataset.quantity;
 
-              upDateCart(productId, quantity);
+              if(quantity){
+                upDateCart(productId, quantity);
+              }else{
+                quantity = 1;
+                upDateCart(productId, quantity);
+              }
+              
               
 
               let newHTML = `
